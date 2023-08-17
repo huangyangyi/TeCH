@@ -1,8 +1,8 @@
 <p align="center">
 
-  <h1 align="center">TeCH: Text-guided Reconstruction of Lifelike Clothed Humans</h1>
+  <h2 align="center">TeCH: Text-guided Reconstruction of Lifelike Clothed Humans</h2>
   <p align="center">
-<a href="https://github.com/huangyangyi">Yangyi Huang*</a>
+    <a href="https://github.com/huangyangyi"><strong>Yangyi Huang*</strong></a>
     ·  
     <a href="https://xyyhw.top/"><strong>Hongwei Yi*</strong></a>
     ·
@@ -15,13 +15,12 @@
     <a href="http://www.cad.zju.edu.cn/home/dengcai/"><strong>Deng Cai</strong></a>
     ·
     <a href="https://justusthies.github.io/"><strong>Justus Thies</strong></a>
-    ·
-    
+    <br>
+    * Equal contribution
   </p>
   <h2 align="center">arXiv 2023</h2>
   <div align="center">
-    <video autoplay loop muted>
-    <source src="https://github.com/huangyangyi/TeCH/assets/7944350/f8fc55ed-9cbe-4b5f-bd1d-237396360713" type=video/mp4>
+    <video autoplay loop muted src="https://github.com/huangyangyi/TeCH/assets/7944350/f8fc55ed-9cbe-4b5f-bd1d-237396360713" type=video/mp4>
     </video>
   </div>
 
@@ -45,7 +44,7 @@ TeCH considers image-based reconstruction as a conditional generation task, taki
 
 ```bibtex
 @misc{huang2023tech,
-      title={TeCH: Text-guided Reconstruction of Lifelike Clothed Humans}, 
+      title={TeCH: Text-guided Reconstruction of Lifelike Clothed Humans},
       author={Yangyi Huang and Hongwei Yi and Yuliang Xiu and Tingting Liao and Jiaxiang Tang and Deng Cai and Justus Thies},
       year={2023},
       eprint={2308.08545},
