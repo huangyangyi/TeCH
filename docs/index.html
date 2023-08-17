@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="<i>TeCH</i> reconstructs a lifelike 3D clothed human from a single image. Offcial website of 'TeCH: Text-guided Reconstruction of Lifelike Clothed Humans'">
+  <meta name="keywords" content="TeCH, Human reconstruction, texture, diffusion model, AIGC">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>TeCH: Text-guided Reconstruction of Lifelike Clothed Humans</title>
+
+<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MRQC0YFE17"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MRQC0YFE17');
+</script>
+
+
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="./static/slick/slick.css" />
+  <link rel="stylesheet" type="text/css" href="./static/slick/slick-theme.css" />
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <div class="container has-text-centered">
+          <h1 class="title is-1 publication-title">
+            TeCH: Text-guided Reconstruction of <br> Lifelike Clothed Humans
+          </h1>
+          <div class="is-size-5 publication-authors">
+            <div class="author-block">
+              <a href="https://huangyangyi.github.io/">Yangyi Huang</a><sup>1*</sup>,
+            </div>
+            <div class="author-block">
+              <a href="https://xyyhw.top/">Hongwei Yi</a><sup>2*</sup>,
+            </div>
+            <div class="author-block">
+              <a href="https://xiuyuliang.cn/">Yuliang Xiu</a><sup>2*</sup>,
+            </div>
+            <div class="author-block">
+              <a href="https://github.com/tingtingliao">Tingting Liao</a><sup>3</sup>,
+            </div>
+            <div class="author-block">
+              <a href="https://me.kiui.moe/">Jiangxiang Tang</a><sup>4</sup>,
+            </div>
+            <div class="author-block">
+              <a href="http://www.cad.zju.edu.cn/home/dengcai/">Deng Cai</a><sup>1</sup>,
+            </div>
+            <div class="author-block">
+              <a href="http://justusthies.github.io">Justus Thies</a><sup>2</sup>,
+            </div>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>State Key Lab of CAD & CG, Zhejiang University </span>
+            <span class="author-block"><sup>2</sup>Max Planck Institute for Intelligent Systems, Tübingen, Germany</span>
+            <br>
+            <span class="author-block"><sup>3</sup>Mohamed bin Zayed University of Artificial Intelligence </span>
+            <span class="author-block"><sup>4</sup>Peking University</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2308.08545.pdf" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>PDF</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2308.08545" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/huangyangyi/TeCH"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Coming soon)</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="hero teaser">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <video id="teaser" autoplay preload muted loop playsinline height="100%">
+          <source src="./static/videos/teaser.mp4" type="video/mp4">
+        </video>
+        <h2 class="subtitle">
+          Given a single image, <i>TeCH</i> reconstructs a lifelike 3D clothed human. “Lifelike” refers to 1) a detailed full-body geometry,
+          including facial features and clothing wrinkles, in both frontal and unseen regions, and 2) a high-quality texture with consistent color and
+          intricate patterns. 
+        </h2>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Despite recent research advancements in reconstructing clothed humans from a single image, accurately restoring the "unseen regions" with high-level details remains an unsolved challenge that lacks attention. Existing methods often generate overly smooth back-side surfaces with a blurry texture. But how to effectively capture all visual attributes of an individual from a single image, which are sufficient to reconstruct unseen areas (e.g., the back view)? Motivated by the power of foundation models, <i>TeCH</i> reconstructs the 3D human by leveraging 1) descriptive text prompts (e.g., garments, colors, hairstyles) which are automatically generated via a garment parsing model and Visual Question Answering (VQA), 2) a personalized fine-tuned Text-to-Image diffusion model (T2I) which learns the "indescribable" appearance. To represent high-resolution 3D clothed humans at an affordable cost, we propose a hybrid 3D representation based on DMTet, which consists of an explicit body shape grid and an implicit distance field. Guided by the descriptive prompts + personalized T2I diffusion model, the geometry and texture of the 3D humans are optimized through multi-view Score Distillation Sampling (SDS) and reconstruction losses based on the original observation. <i>TeCH</i> produces high-fidelity 3D clothed humans with consistent & delicate texture, and detailed full-body geometry. Quantitative and qualitative experiments demonstrate that <i>TeCH</i> outperforms the state-of-the-art methods in terms of reconstruction accuracy and rendering quality. The code will be publicly available for research purposes at <a href="https://github.com/huangyangyi/TeCH">https://github.com/huangyangyi/TeCH</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+
+      <!-- Paper video. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Intro Video (YouTube)</h2>
+          <div class="publication-video">
+            <iframe src="https://www.youtube.com/embed/SjzQ6158Pho" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Intro Video (Bilibili)</h2>
+          <div class="publication-video">
+            <iframe src="https://player.bilibili.com/player.html?bvid=BV1Ju411J7XF&amp;page=1&amp;autoplay=0" title="Bilibili video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+            </iframe>
+          </div>
+        </div>
+      </div>
+      <!--/ Paper video. -->
+
+
+    <div class="container content is-max-desktop">
+      <h2 class="title is-3 is-centered has-text-centered">Method Overview</h2>
+      <img src="static/img/TeCH-Method.png">
+      <div class="content has-text-justified" style="padding-top: 15px">
+        <i>TeCH</i> takes an image $\mathcal{I}$ of a human as input. 
+        Text guidance is constructed through \textbf{(a)} using garment parsing model (Segformer) and VQA model (BLIP) to parse the human attributes $A$ with pre-defined problems $Q$, and \textbf{(b)} embedding with subject-specific appearance into DreamBooth $\mathcal{D'}$ as unique token $[V]$. 
+        Next, <i>TeCH</i> represents the 3D clothed human with \textbf{(c)} \smplx initialized hybrid \dmtet, and optimize both geometry and texture using $\mathcal{L}_\text{SDS}$ guided by prompt $P=[V]+P_\text{VQA}(A)$. 
+        During the optimization, $\mathcal{L}_\text{recon}$ is introduced to ensure input view consistency, $\mathcal{L}_\text{CD}$ is to enforce the color consistency between different views, and $\mathcal{L}_\text{normal}$ serves as surface regularizer. Finally, the extracted  high-quality textured meshes \textbf{(d)} are ready to be used in various downstream applications.
+      </div> 
+    </div>
+  
+    </div>
+  </section>
+
+  <section class="hero section" id="results">
+    <div class="container content is-max-desktop has-text-centered">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Qualitative Results</h2>
+          <h2 class="title is-4">Comparison with SOTA single-image human recontruction methods</h3>
+            <div class="content has-text-justified">
+              <p>
+                We compare TeCH with baselines method PIFu, PaMIR and PHORHUM qualitatively on in-the-wild images from SHHQ dataset. our training-data-free one-shot method generalizes well on real-world human images and creates rich details for body textures, such as patterns on clothes and shoes, tattoos on the skin, and details of face and hair. While PIFu and PaMIR produce blurry results, limited by the distribution gap between training data and in-the-wild data. 
+              </p>
+            </div>
+            
+            <div class="hero-body" style="padding: 0.5rem;">
+              <div class="container">
+                <h2 class="title is-5">Comparisons on Geometry</h3>
+                <div id="results-carousel" class="carousel results-carousel">
+                  <div>
+                    <div class="results-item">
+                      <video poster="" id="geometry-1" autoplay controls muted loop playsinline preload width="100%"> 
+                        <source src="./static/videos/geometry-1.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="results-item">
+                      <video poster="" id="geometry-1" autoplay controls muted loop playsinline preload width="100%"> 
+                        <source src="./static/videos/geometry-2.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="results-item">
+                      <video poster="" id="geometry-1" autoplay controls muted loop playsinline preload width="100%"> 
+                        <source src="./static/videos/geometry-3.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="results-item">
+                      <video poster="" id="geometry-1" autoplay controls muted loop playsinline preload width="100%"> 
+                        <source src="./static/videos/geometry-4.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="results-item">
+                      <video poster="" id="geometry-1" autoplay controls muted loop playsinline preload width="100%"> 
+                        <source src="./static/videos/geometry-5.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="results-item">
+                      <video poster="" id="geometry-1" autoplay controls muted loop playsinline preload width="100%"> 
+                        <source src="./static/videos/geometry-6.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <div class="columns is-centered has-text-centered">
+                  <div class="column is-three-quarters">
+                    <p>
+                     Results on <a href="https://chingswy.github.io/Dataset-Demo/">ZJU-MoCAP</a> dataset
+                    </p>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+            <div class="container">
+              <h2 class="title is-5">Comparisons on Texture</h3>
+              <div id="results-carousel" class="carousel results-carousel">
+                <div>
+                  <div class="results-item">
+                    <video poster="" id="texture-1" autoplay controls muted loop playsinline preload width="100%"> 
+                      <source src="./static/videos/texture-1.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <div>
+                  <div class="results-item">
+                    <video poster="" id="texture-2" autoplay controls muted loop playsinline preload width="100%"> 
+                      <source src="./static/videos/texture-2.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <div>
+                  <div class="results-item">
+                    <video poster="" id="texture-3" autoplay controls muted loop playsinline preload width="100%"> 
+                      <source src="./static/videos/texture-3.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <div>
+                  <div class="results-item">
+                    <video poster="" id="texture-4" autoplay controls muted loop playsinline preload width="100%"> 
+                      <source src="./static/videos/texture-4.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <div>
+                  <div class="results-item">
+                    <video poster="" id="texture-5" autoplay controls muted loop playsinline preload width="100%"> 
+                      <source src="./static/videos/texture-5.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <div>
+                  <div class="results-item">
+                    <video poster="" id="texture-6" autoplay controls muted loop playsinline preload width="100%"> 
+                      <source src="./static/videos/texture-6.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div class="columns is-centered has-text-centered">
+                <div class="column is-three-quarters">
+                  <p>
+                   Results on <a href="https://chingswy.github.io/Dataset-Demo/">ZJU-MoCAP</a> dataset
+                  </p>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="hero-body">
+      <h2 class="title is-4 has-text-centered">More results on in-the-wild images</h2>
+      <div class="container is-max-desktop">
+        <video id="more-results" autoplay preload muted loop playsinline height="100%">
+          <source src="./static/videos/more-results.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section" id="BibTeX">
+    
+    <div class="container content is-max-desktop">
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Related Links</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            For more work on similar tasks, please check out the following
+            papers.
+          </p>
+          <ul>
+            <li>
+              <a href="https://icon.is.tue.mpg.de/">ICON</a> and
+              <a href="https://github.com/ZhengZerong/PaMIR">PaMIR</a>
+              reconstruct 3D clothed human from single image using Implicit
+              Function and Explicit SMPL mesh.
+            </li>
+            <li>
+              <a href="https://shunsukesaito.github.io/PIFu/">PIFu</a>,
+              <a href="https://shunsukesaito.github.io/PIFuHD/">PIFuHD</a>
+              and
+              <a href="https://phorhum.github.io/">PHORHUM</a>
+              reconstruct them using Implicit Function without introducing
+              any 3D prior.
+            </li>
+            <li>
+              <a href="https://github.com/hoshino042/bilateral_normal_integration">ECON</a>
+              combines implicit and explicit surfaces to infer high-fidelity 3D humans.
+            </li>
+            <li>
+              <a href="https://pals.ttic.edu/p/score-jacobian-chaining">Score Jacobian Chaining</a>, 
+              <a href="https://dreamfusion3d.github.io/">DreamFusion</a> and
+              <a href="https://sparsefusion.github.io/">SparseFusion</a> use pretrained text-to-image diffusion model for 3D generation
+              </li>
+            <li>
+              <a href="https://vita-group.github.io/NeuralLift-360/">NeuralLift-360</a>,
+              <a href="https://arxiv.org/abs/2212.03267">NeRDi</a>,
+              <a href="https://arxiv.org/abs/2302.10663">RealFusion</a>, 
+              <a href="https://make-it-3d.github.io/">Make-It-3D</a> and 
+              <a href="https://zero123.cs.columbia.edu/">Zero-1-to-3</a> use pretrained image diffusion model for single-image-to-3D synthesis.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Acknowledgments &amp; Disclosure</h2>
+
+          <div class="content has-text-justified">
+            We thank <a href="https://vanessik.github.io/">Vanessa Sklyarova</a> for proofreading, <a href="https://is.mpg.de/person/hfeng">Haven Feng</a> and <a href="https://wyliu.com/">Weiyang Liu</a> for their valuable suggestions, <a href="https://haofanwang.github.io/">Haofan Wang</a>, Huaxia Li, and <a href="https://tangxuvis.github.io/">Xu Tang</a> for their technical support, and <a href="https://ps.is.mpg.de/person/black">Michael J. Black</a>'s feedback. Yuliang Xiu is funded by the European Union’s Horizon 2020 research and innovation programme under the Marie Skłodowska-Curie grant agreement No.860768 <a herf="https://www.clipe-itn.eu"> (CLIPE)</a>. Hongwei Yi is supported by the German Federal Ministry of Education and Research(BMBF): Tubingen AI Center, FKZ: 01IS18039B. Yangyi Huang and Deng Cai are supported by the National Nature Science Foundation of China (Grant Nos: 62273302, 62036009, 61936006). Jiaxiang Tang is supported by National Natural Science Foundation of China (Grant Nos: 61632003, 61375022, 61403005).
+          </div>
+        </div>
+      </div>
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@misc{huang2023tech,
+      title={TeCH: Text-guided Reconstruction of Lifelike Clothed Humans}, 
+      author={Yangyi Huang and Hongwei Yi and Yuliang Xiu and Tingting Liao and Jiaxiang Tang and Deng Cai and Justus Thies},
+      year={2023},
+      eprint={2308.08545},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}</code></pre>
+  </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <a class="icon-link" href="https://arxiv.org/pdf/2308.08545.pdf">
+          <i class="fas fa-file-pdf"></i>
+        </a>
+        <a class="icon-link" href="https://github.com/huangyangyi/TeCH" class="external-link" disabled>
+          <i class="fab fa-github"></i>
+        </a>
+        <p>
+          The website template is borrowed from HyperNeRF.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="text/javascript" src="./static/slick/slick.js"></script>
+</body>
+
+</html>
