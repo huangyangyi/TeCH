@@ -2,7 +2,7 @@
 
 Official repo of "TeCH: Text-guided Reconstruction of Lifelike Clothed Humans"
 
-[[Arxiv](https://arxiv.org/abs/2308.08545)] [[Website(release soon)](https://huangyangyi.github.io/TeCH)]
+[[Arxiv](https://arxiv.org/abs/2308.08545)] [[Website](https://huangyangyi.github.io/TeCH)]
 
 ## Citation
 
