@@ -45,7 +45,7 @@ TeCH considers image-based reconstruction as a conditional generation task, taki
 ```bibtex
 @misc{huang2023tech,
       title={TeCH: Text-guided Reconstruction of Lifelike Clothed Humans},
-      author={Yangyi Huang and Hongwei Yi and Yuliang Xiu and Tingting Liao and Jiaxiang Tang and Deng Cai and Justus Thies},
+      author={Huang, Yangyi and Yi, Hongwei and Xiu, Yuliang and Liao, Tingting and Tang, Jiaxiang and Cai, Deng and Justus Thies},
       year={2023},
       eprint={2308.08545},
       archivePrefix={arXiv},
