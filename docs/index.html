@@ -291,19 +291,19 @@
           <img src="static/img/TeCH-Method.png" />
           <div class="content has-text-justified" style="padding-top: 15px">
             <i>TeCH</i> takes an image $\mathcal{I}$ of a human as input. Text
-            guidance is constructed through \textbf{(a)} using garment parsing
+            guidance is constructed through $\textbf{(a)}$ using garment parsing
             model (Segformer) and VQA model (BLIP) to parse the human attributes
-            $A$ with pre-defined problems $Q$, and \textbf{(b)} embedding with
+            $A$ with pre-defined problems $Q$, and $\textbf{(b)}$ embedding with
             subject-specific appearance into DreamBooth $\mathcal{D'}$ as unique
             token $[V]$. Next, <i>TeCH</i> represents the 3D clothed human with
-            \textbf{(c)} \smplx initialized hybrid \dmtet, and optimize both
+            $\textbf{(c)}$ SMPL-X initialized hybrid DMTet, and optimize both
             geometry and texture using $\mathcal{L}_\text{SDS}$ guided by prompt
             $P=[V]+P_\text{VQA}(A)$. During the optimization,
             $\mathcal{L}_\text{recon}$ is introduced to ensure input view
             consistency, $\mathcal{L}_\text{CD}$ is to enforce the color
             consistency between different views, and $\mathcal{L}_\text{normal}$
-            serves as surface regularizer. Finally, the extracted high-quality
-            textured meshes \textbf{(d)} are ready to be used in various
+            serves as a surface regularizer. Finally, the extracted high-quality
+            textured meshes $\textbf{(d)}$ are ready to be used in various
             downstream applications.
           </div>
         </div>
@@ -316,14 +316,14 @@
           <div class="column is-four-fifths">
             <h2 class="title is-3">Qualitative Results</h2>
             <h2 class="title is-4">
-              Comparison with SOTA single-image human recontruction methods
+              Comparison with SOTA single-image human reconstruction methods
             </h2>
             <div class="content has-text-justified">
               <p>
-                We compare TeCH with baselines method PIFu, PaMIR and PHORHUM
-                qualitatively on in-the-wild images from SHHQ dataset. our
+                We compare TeCH with baseline methods, PIFu, PaMIR and PHORHUM
+                qualitatively on in-the-wild images from the SHHQ dataset. our
                 training-data-free one-shot method generalizes well on
-                real-world human images and creates rich details for body
+                real-world human images and creates rich details for the body
                 textures, such as patterns on clothes and shoes, tattoos on the
                 skin, and details of face and hair. While PIFu and PaMIR produce
                 blurry results, limited by the distribution gap between training
@@ -713,7 +713,7 @@
         </div>
         <h2 class="title">BibTeX</h2>
         <pre><code>
-@inproceedings{huang2023tech,
+@inproceedings{huang2024tech,
   title={{TeCH: Text-guided Reconstruction of Lifelike Clothed Humans}},
   author={Huang, Yangyi and Yi, Hongwei and Xiu, Yuliang and Liao, Tingting and Tang, Jiaxiang and Cai, Deng and Thies, Justus},
   booktitle={International Conference on 3D Vision (3DV)},

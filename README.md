@@ -18,7 +18,7 @@
     <br>
     * Equal contribution
   </p>
-  <h2 align="center">arXiv 2023</h2>
+  <h2 align="center">3DV 2024</h2>
   <div align="center">
     <video autoplay loop muted src="https://github.com/huangyangyi/TeCH/assets/7944350/f8fc55ed-9cbe-4b5f-bd1d-237396360713" type=video/mp4>
     </video>
@@ -43,12 +43,10 @@ TeCH considers image-based reconstruction as a conditional generation task, taki
 ## Citation
 
 ```bibtex
-@misc{huang2023tech,
-      title={TeCH: Text-guided Reconstruction of Lifelike Clothed Humans},
-      author={Yangyi Huang and Hongwei Yi and Yuliang Xiu and Tingting Liao and Jiaxiang Tang and Deng Cai and Justus Thies},
-      year={2023},
-      eprint={2308.08545},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+@inproceedings{huang2023tech,
+  title={{TeCH: Text-guided Reconstruction of Lifelike Clothed Humans}},
+  author={Huang, Yangyi and Yi, Hongwei and Xiu, Yuliang and Liao, Tingting and Tang, Jiaxiang and Cai, Deng and Thies, Justus},
+  booktitle={International Conference on 3D Vision (3DV)},
+  year={2024}
 }
 ```
