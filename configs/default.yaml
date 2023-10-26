@@ -1,0 +1,160 @@
+workspace: null
+exp_root: null
+stage: null
+use_gl: False
+profile: False
+fp16: False
+
+model:
+  use_dmtet_network: False
+  use_explicit_tet: False
+  use_color_network: false
+  tet_shell_offset: 0.1
+  tet_shell_decimate: 0.9
+  tet_offset_scale: 0.
+  tet_grid_scale: 0.
+  tet_grid_volume: 0.00000005
+  tet_num_subdiv: 0
+  dmtet_network: hash
+  render_ssaa: 4
+  use_texture_2d: false
+  use_vertex_tex: False
+  mesh_scale: 1.0
+  albedo_res: 2048
+  different_bg: false
+  single_bg_color: False
+  use_can_pose_space: False
+  geo_hash_max_res: 1024
+  geo_hash_num_levels: 16
+  geo_hash_max_res: 1024
+  color_hash_num_levels: 16
+  color_hash_max_res: 2048
+  color_num_layers: 1
+  color_hidden_dim: 32
+  min_near: 0.01
+  
+
+train:
+  dmtet_lr: 0.1
+  init_texture_3d: False
+  init_mesh: True
+  init_mesh_padding: 0.
+  tet_subdiv_steps: null
+  workspace: null
+  eval_interval: 10
+  lock_geo: False
+  fp16: False
+  render_ssaa: 4
+  w: 512
+  h: 512
+
+  iters: 0
+  lr: 0.001
+  warm_iters: 0
+  min_lr: 0
+
+  ckpt: latest
+  pretrained: null
+
+  optim: adan
+
+  render_relative_normal: true
+  albedo_sample_ratio: 1.0
+  normal_sample_ratio: 0.
+  textureless_sample_ratio: 0.
+  can_pose_sample_ratio: 0.
+  train_both: false
+
+  loss_mask_erosion: 10
+
+  lambda_normal: 0.
+  lambda_lap: 0.
+  lambda_recon: 0.
+  lambda_sil: 0.
+  lambda_color_chamfer: 0.
+  
+  crop_for_lpips: false
+  use_lap_loss: false
+  single_directional_color_chamfer: False
+  color_chamfer_step: 0
+  color_chamfer_space: rgb
+
+  decay_lnorm_cosine_cycle: null
+  decay_lnorm_cosine_max_iter: null
+  decay_lnorm_iter: null
+  decay_lnorm_ratio: null
+
+  jitter_pose: False
+  radius_range: [0.7, 1.3]
+  height_range: [-0.4, 0.4]
+  fovy_range: [40, 70]
+  theta_range: [60, 120]
+  phi_range: [0., 360.]
+  phi_diff: 30
+  angle_front: 60
+  angle_overhead: 30
+  face_sample_ratio: 0.3
+  face_height_range: [0., 0.]
+  face_radius_range: [0.3, 0.4]
+  face_phi_diff: 30
+  face_theta_range: [90, 90]
+  face_phi_range: [-90, 90]
+
+  init_empty_tex: False
+
+data:
+  load_input_image: True
+  img: null
+  load_front_normal: false
+  front_normal_img: null
+  load_back_normal: false
+  back_normal_img: null
+  load_keypoints: True
+  keypoints_path: null
+  load_result_mesh: False
+  last_model: null
+  last_ref_model: null
+  smpl_model: null
+  load_apose_mesh: False
+  can_pose_folder: null
+  load_occ_mask: False
+  occ_mask: null
+  loss_mask: null
+  load_da_pose_mesh: False
+  da_pose_mesh: null
+
+guidance:
+  type: stable-diffusion
+  use_view_prompt: True
+  sd_version: 1.5
+  guidance_scale: 100.
+  step_range: [0.02, 0.25]
+  use_dreambooth: True
+  hf_key: null
+  head_hf_key: null
+  lora: null
+  text: null
+  text_geo: null
+  text_head: null
+  text_extra: ''
+  normal_text: null
+  normal_text_extra: ''
+  textureless_text: null
+  textureless_text_extra: ''
+  negative: ''
+  negative_normal: ''
+  negative_textureless: ''
+  controlnet: null
+  controlnet_guidance_geometry: null
+  controlnet_conditioning_scale: 0.
+  controlnet_openpose_guidance: null
+
+test:
+  test: false
+  not_test_video: False
+  save_mesh: True
+  save_uv: False
+  write_image: False
+  W: 800
+  H: 800
+  

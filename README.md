@@ -40,6 +40,30 @@
 TeCH considers image-based reconstruction as a conditional generation task, taking conditions from both the input image and the derived descriptions. It is capable of reconstructing "lifelike" 3D clothed humans. <strong>“Lifelike”</strong> refers to 1) a detailed full-body geometry, including facial features and clothing wrinkles, in both frontal and unseen regions, and 2) a high-quality texture with consistent color and intricate patterns.
 <br/>
 
+## Installation
+
+Please follow the [Installation Instruction](docs/install.md) to setup all the required packages.
+
+## Getting Started
+
+We provide a running script at `scripts/run.sh`. Before getting started, you need to set your own environment variables of `CUDA_HOME` and `REPLICATE_API_TOKEN`([get your token here](https://replicate.com/signin?next=/account/api-tokens)) in the script.
+
+After that, you can use TeCH to create a highly detailed clothed human textured mesh from a single image, for example:
+
+```shell
+sh scripts/run.sh input/examples/name.img exp/examples/name
+```
+
+The results will be save in the experiment folder `exp/examples/name`, and the textured mesh will be saved as `exp/examples/name/obj/name_texture.obj`
+
+Noted that in the "Step 3", the current version of Dreambooth implementation requires 2\*32G GPU memory. And 1\*32G GPU memory is efficient for other steps. The entire training process for a subject takes ~3 hours on our V100 GPUs.
+
+## TODOs
+
+- [ ] Release of evaluation protocals and results data for comparison (on CAPE & THUman 2.0 datasets).
+- [ ] Try to use the diffusers version of DreamBooth to save training memory.
+- [ ] Further improvement of efficiency and robustness.
+
 ## Citation
 
 ```bibtex
@@ -50,3 +74,9 @@ TeCH considers image-based reconstruction as a conditional generation task, taki
   year={2024}
 }
 ```
+## License
+This code and model are available for non-commercial scientific research purposes as defined in the LICENSE (i.e., MIT LICENSE). 
+Note that, using TeCH, you have to register SMPL-X and agree with the LICENSE of it, and it's not MIT LICENSE, you can check the LICENSE of SMPL-X from https://github.com/vchoutas/smplx/blob/main/LICENSE.
+
+## Acknowledgment
+This implementation is mainly built based on [Stable Dreamfusion](https://github.com/ashawkey/stable-dreamfusion), [ECON](https://github.com/YuliangXiu/ECON) [DreamBooth-Stable-Diffusion](https://github.com/XavierXiao/Dreambooth-Stable-Diffusion), and the BLIP API from Salesforce on [Replicate](https://replicate.com/salesforce/blip)
