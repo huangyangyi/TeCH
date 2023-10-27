@@ -4,7 +4,7 @@ import kaolin as kal
 from tqdm import tqdm
 import random
 import trimesh
-from .network_utils import Decoder, HashDecoder, HashDecoderNew
+from .network_utils import Decoder, HashDecoder
 # Laplacian regularization using umbrella operator (Fujiwara / Desbrun).
 # https://mgarland.org/class/geom04/material/smoothing.pdf
 def laplace_regularizer_const(mesh_verts, mesh_faces):
