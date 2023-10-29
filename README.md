@@ -54,20 +54,20 @@ After that, you can use TeCH to create a highly detailed clothed human textured 
 sh scripts/run.sh input/examples/name.img exp/examples/name
 ```
 
-The results will be save in the experiment folder `exp/examples/name`, and the textured mesh will be saved as `exp/examples/name/obj/name_texture.obj`
+The results will be saved in the experiment folder `exp/examples/name`, and the textured mesh will be saved as `exp/examples/name/obj/name_texture.obj`
 
-Noted that in the "Step 3", the current version of Dreambooth implementation requires 2\*32G GPU memory. And 1\*32G GPU memory is efficient for other steps. The entire training process for a subject takes ~3 hours on our V100 GPUs.
+It is noted that in "Step 3", the current version of Dreambooth implementation requires 2\*32G GPU memory. And 1\*32G GPU memory is efficient for other steps. The entire training process for a subject takes ~3 hours on our V100 GPUs.
 
 ## TODOs
 
-- [ ] Release of evaluation protocals and results data for comparison (on CAPE & THUman 2.0 datasets).
-- [ ] Try to use the diffusers version of DreamBooth to save training memory.
+- [ ] Release of evaluation protocols and results data for comparison (on CAPE & THUman 2.0 datasets).
+- [ ] Switch to the diffuser version of DreamBooth to save training memory.
 - [ ] Further improvement of efficiency and robustness.
 
 ## Citation
 
 ```bibtex
-@inproceedings{huang2023tech,
+@inproceedings{huang2024tech,
   title={{TeCH: Text-guided Reconstruction of Lifelike Clothed Humans}},
   author={Huang, Yangyi and Yi, Hongwei and Xiu, Yuliang and Liao, Tingting and Tang, Jiaxiang and Cai, Deng and Thies, Justus},
   booktitle={International Conference on 3D Vision (3DV)},
@@ -75,8 +75,8 @@ Noted that in the "Step 3", the current version of Dreambooth implementation req
 }
 ```
 ## License
-This code and model are available for non-commercial scientific research purposes as defined in the LICENSE (i.e., MIT LICENSE). 
+This code and model are available only for **non-commercial** research purposes as defined in the LICENSE (i.e., MIT LICENSE). 
 Note that, using TeCH, you have to register SMPL-X and agree with the LICENSE of it, and it's not MIT LICENSE, you can check the LICENSE of SMPL-X from https://github.com/vchoutas/smplx/blob/main/LICENSE.
 
 ## Acknowledgment
-This implementation is mainly built based on [Stable Dreamfusion](https://github.com/ashawkey/stable-dreamfusion), [ECON](https://github.com/YuliangXiu/ECON) [DreamBooth-Stable-Diffusion](https://github.com/XavierXiao/Dreambooth-Stable-Diffusion), and the BLIP API from Salesforce on [Replicate](https://replicate.com/salesforce/blip)
+This implementation is mainly built based on [Stable Dreamfusion](https://github.com/ashawkey/stable-dreamfusion), [ECON](https://github.com/YuliangXiu/ECON), [DreamBooth-Stable-Diffusion](https://github.com/XavierXiao/Dreambooth-Stable-Diffusion), and the BLIP API from Salesforce on [Replicate](https://replicate.com/salesforce/blip)
