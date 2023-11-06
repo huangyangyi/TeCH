@@ -245,15 +245,19 @@ class Trainer(object):
             self.loss_mask = torch.tensor(self.loss_mask, dtype=torch.float).to(self.device).unsqueeze(0) * self.input_mask
             self.loss_mask_norm = torch.tensor(self.loss_mask_norm, dtype=torch.float).to(self.device).unsqueeze(0) * self.normal_mask
         elif self.cfg.data.occ_mask is not None:
-            self.loss_mask = torch.tensor(self.get_loss_mask(self.cfg.data.occ_mask, self.cfg.data.seg_mask, self.input_image.shape[-2:]), dtype=torch.float).to(self.device) * self.input_mask
-            self.loss_mask_norm = torch.tensor(self.get_loss_mask(self.cfg.data.occ_mask, self.cfg.data.seg_mask, self.normal_mask.shape[-2:]), dtype=torch.float).to(self.device) * self.normal_mask
+            self.loss_mask = torch.tensor(self.get_loss_mask(self.cfg.data.occ_mask, None, self.input_image.shape[-2:]), dtype=torch.float).to(self.device) * self.input_mask
+            self.loss_mask_norm = torch.tensor(self.get_loss_mask(self.cfg.data.occ_mask, None, self.normal_mask.shape[-2:]), dtype=torch.float).to(self.device) * self.normal_mask
         else:
             self.loss_mask = torch.ones_like(self.input_mask)
             self.loss_mask_norm = torch.ones_like(self.normal_mask)
         if self.cfg.train.loss_mask_erosion is not None:
-            kernel = np.ones((self.cfg.train.loss_mask_erosion, self.cfg.train.loss_mask_erosion), np.float32)
+            input_size = max(self.input_mask.shape[0], self.input_mask.shape[1])
+            normal_input_size = max(self.normal_mask.shape[0], self.normal_mask.shape[1])
+            image_kernel_size = int(input_size * self.cfg.train.loss_mask_erosion)
+            norm_kernel_size = int(normal_input_size * self.cfg.train.loss_mask_erosion)
+            kernel = np.ones((image_kernel_size, image_kernel_size), np.float32)
             self.erosion_mask = torch.tensor(cv2.erode(self.input_mask.cpu().numpy()[0], kernel, cv2.BORDER_REFLECT)).to(self.device).unsqueeze(0) 
-            norm_kernel = np.ones((self.cfg.train.loss_mask_erosion//2, self.cfg.train.loss_mask_erosion//2), np.float32)
+            norm_kernel = np.ones((norm_kernel_size, norm_kernel_size), np.float32)
             if self.normal_mask is not None:
                 self.erosion_normal_mask = torch.tensor(cv2.erode(self.normal_mask.cpu().numpy()[0], norm_kernel, cv2.BORDER_REFLECT)).to(self.device).unsqueeze(0) 
             else:
@@ -544,10 +548,11 @@ class Trainer(object):
                         else:
                             t = (self.global_step % self.cfg.train.decay_lnorm_cosine_cycle) / self.cfg.train.decay_lnorm_cosine_cycle
                             decay_ratio = (1 + math.cos(t * math.pi)) / 2
-                    else:
+                    elif self.cfg.train.decay_lnorm_iter is not None:
                         for step, ratio in zip(self.cfg.train.decay_lnorm_iter, self.cfg.train.decay_lnorm_ratio):
                             if self.global_step > step:
                                 decay_ratio = ratio
+                    
                     l_norm = (lpips_loss + mse_loss) * self.cfg.train.lambda_normal * decay_ratio
                     loss = loss + l_norm
                 #print('l_sil', l_sil.detach().item(), 'l_norm', l_norm.detach().item())

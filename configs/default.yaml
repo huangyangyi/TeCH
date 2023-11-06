@@ -65,7 +65,7 @@ train:
   can_pose_sample_ratio: 0.
   train_both: false
 
-  loss_mask_erosion: 10
+  loss_mask_erosion: 0.01
 
   lambda_normal: 0.
   lambda_lap: 0.

@@ -38,6 +38,7 @@ data:
     load_back_normal: True
     load_result_mesh: True
     load_apose_mesh: True
+    load_occ_mask: True
 guidance:
     use_view_prompt: True
     guidance_scale: 100.
