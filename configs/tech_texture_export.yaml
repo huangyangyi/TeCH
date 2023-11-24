@@ -1,5 +1,5 @@
 exp_root: ''
-stage: texture_export
+stage: texture
 model:
     use_dmtet_network: false
     use_color_network: true
