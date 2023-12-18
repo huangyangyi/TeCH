@@ -12,9 +12,6 @@ core/lib/gridencoder/dist
 *.egg-info
 logs
 *.pt
-*.pth
-thirdparties/MODNet
-thirdparties/clip
 clip_ckpts
 input_data/demo/*
 .DS_Store

@@ -1,0 +1,8 @@
+[submodule "thirdparties/MODNet"]
+	path = thirdparties/MODNet
+	url = git@github.com:ZHKKKe/MODNet.git
+	ignore = dirty
+[submodule "thirdparties/nvdiffrast"]
+	path = thirdparties/nvdiffrast
+	url = https://github.com/NVlabs/nvdiffrast.git
+	ignore = dirty

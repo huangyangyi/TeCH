@@ -1,0 +1,5 @@
+cd thirdparties/MODNet/pretrained
+gdown 1IxxExwrUe4_yQnlEx389tmQI8luX7z5m
+gdown 1Nf1ZxeJZJL8Qx9KadcYYyEmmlKhTADxX
+gdown 1gNJXQPUBBp2mbA4q1Giz5mzv3EpxR7lq
+gdown 1mcr7ALciuAsHCpLnrtG_eop5-EYhbCmz 
