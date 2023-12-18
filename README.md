@@ -73,7 +73,22 @@ It is noted that in "Step 3", the current version of Dreambooth implementation r
   booktitle={International Conference on 3D Vision (3DV)},
   year={2024}
 }
+
 ```
+<br>
+
+## Contributors
+
+Kudos to all of our amazing contributors! TeCH thrives through open-source. In that spirit, we welcome all kinds of contributions from the community.
+
+<a href="https://github.com/huangyangyi/TeCH/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=huangyangyi/TeCH" />
+</a>
+
+_Contributor avatars are randomly shuffled._
+
+<br>
+
 ## License
 This code and model are available only for **non-commercial** research purposes as defined in the LICENSE (i.e., MIT LICENSE). 
 Note that, using TeCH, you have to register SMPL-X and agree with the LICENSE of it, and it's not MIT LICENSE, you can check the LICENSE of SMPL-X from https://github.com/vchoutas/smplx/blob/main/LICENSE.
