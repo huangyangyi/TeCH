@@ -27,6 +27,7 @@ cd ../../
 ```sh
 git clone https://github.com/ZHKKKe/MODNet thirdparties/MODNet
 ```
-1. Download necessary data for body models: `sh scripts/download_body_data.sh`
-2. Download `runwayml/stable-diffusion-v1-5` checkpoint, background images and class regularization data for DreamBooth by running `sh scripts/download_dreambooth_data.sh`, you can also try using another version of SD model, or use other images of `man` and `woman` for regularization (We simply generates these data with the SD model).
+1. Download necessary data for body models: `bash scripts/download_body_data.sh`
+> If you meet `Username/Password Authentication Failed.`, you can solve it by register for other projects in [this link](https://icon.is.tue.mpg.de/user.php).
+2. Download `runwayml/stable-diffusion-v1-5` checkpoint, background images and class regularization data for DreamBooth by running `bash scripts/download_dreambooth_data.sh`, you can also try using another version of SD model, or use other images of `man` and `woman` for regularization (We simply generates these data with the SD model).
    
