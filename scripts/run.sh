@@ -14,8 +14,8 @@ python utils/body_utils/preprocess.py --in_path ${INPUT_FILE} --out_dir ${EXP_DI
 # Step 2: Get BLIP prompt and gender, you can also use your own prompt
 python utils/get_prompt_blip.py --img-path ${EXP_DIR}/png/${SUBJECT_NAME}_crop.png --out-path ${EXP_DIR}/prompt.txt
 # python core/get_prompt.py ${EXP_DIR}/png/${SUBJECT_NAME}_crop.png
-export PROMPT=`cat ${EXP_DIR}/prompt.txt| cut -d'|' -f1`
-export GENDER=`cat ${EXP_DIR}/prompt.txt| cut -d'|' -f2`
+export PROMPT="`cat ${EXP_DIR}/prompt.txt| cut -d'|' -f1`"
+export GENDER="`cat ${EXP_DIR}/prompt.txt| cut -d'|' -f2`"
 
 # Step 3: Finetune Dreambooth model (minimal GPU memory requirement: 2x32G)
 rm -rf ${EXP_DIR}/ldm
